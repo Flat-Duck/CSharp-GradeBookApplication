@@ -51,8 +51,8 @@ GradeBookUserInterface.CommandLoop(gradeBook);
                  GradeBookUserInterface.CommandLoop(gradeBook);
 
             }else{
-                  Console.WriteLine("is not a supported type of gradebook, please try again");
-           // exit;
+                  Console.WriteLine(" is not a supported type of gradebook, please try again");
+           return;
           
             }
             
