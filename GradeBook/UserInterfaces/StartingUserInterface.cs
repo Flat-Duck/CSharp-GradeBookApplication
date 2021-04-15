@@ -39,21 +39,18 @@ namespace GradeBook.UserInterfaces
                 Console.WriteLine("Command not valid, Create requires a name and type of gradebook.");
                 return;
             }
-            var name = parts[2];
+            var name = parts[1];
+            var type = parts[2];
             BaseGradeBook gradeBook;
             
-            if (name.Equals("standard"))
+             if (type == "standard")
+                gradeBook = new StandardGradeBook(name);
+            if (type == "ranked")
+                gradeBook = new RankedGradeBook(name);
+            else
             {
-                gradeBook = new StandardGradeBook(name);    
-GradeBookUserInterface.CommandLoop(gradeBook);
-            }else if(name.Equals("ranked")){
-                gradeBook = new RankedGradeBook(name);    
-                 GradeBookUserInterface.CommandLoop(gradeBook);
-
-            }else{
-                  Console.WriteLine(" is not a supported type of gradebook, please try again");
-           return;
-          
+                Console.WriteLine("{0} is not a supported type of gradebook, please try again", type);
+                return;
             }
             
             Console.WriteLine("Created gradebook {0}.", name);
@@ -82,7 +79,9 @@ GradeBookUserInterface.CommandLoop(gradeBook);
             Console.WriteLine();
             Console.WriteLine("GradeBook accepts the following commands:");
             Console.WriteLine();
-            Console.WriteLine("Create 'Name' - Creates a new gradebook where 'Name' is the name of the gradebook.");
+            Console.WriteLine("Create 'Name' 'Type' - Creates a new gradebook where 'Name' is the name of the gradebook and 'Type' is what type of grading it should use.");
+
+           // Console.WriteLine("Create 'Name' - Creates a new gradebook where 'Name' is the name of the gradebook.");
             Console.WriteLine();
             Console.WriteLine("Load 'Name' - Loads the gradebook with the provided 'Name'.");
             Console.WriteLine();
